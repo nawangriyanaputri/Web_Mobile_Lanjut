@@ -32,7 +32,9 @@ class _ProductScreenState extends State<ProductScreen> {
   List<Product> products = [];
   bool isLoading = true;
 
-  final String apiUrl = 'http://127.0.0.1:8000/api/products';
+  // DIUBAH KE URL RAILWAY PRODUCTION
+  final String apiUrl =
+      'https://webmobilelanjut-production.up.railway.app/api/products';
 
   @override
   void initState() {
@@ -45,8 +47,7 @@ class _ProductScreenState extends State<ProductScreen> {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         final Map<String, dynamic> decodedData = jsonDecode(response.body);
-        final List<dynamic> jsonList =
-            decodedData['data']; // Mengambil dari key 'data' sesuai API Laravel
+        final List<dynamic> jsonList = decodedData['data'];
 
         setState(() {
           products = jsonList.map((json) => Product.fromJson(json)).toList();
