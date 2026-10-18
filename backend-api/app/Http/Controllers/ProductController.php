@@ -35,18 +35,21 @@ class ProductController extends Controller
                 'stock' => 'required|integer|min:0'
             ]);
 
+            $product = Product::create($validated);
+
             Log::info('Produk baru dibuat', $validated);
 
             return response()->json([
                 'message' => 'Produk berhasil dibuat',
-                'data' => $validated
+                'data' => $product
             ], 201);
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
 
             return response()->json([
-                'message' => 'Terjadi kesalahan pada server'
+                'message' => 'Terjadi kesalahan pada server',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
