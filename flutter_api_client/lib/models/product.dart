@@ -1,7 +1,7 @@
 class Product {
   final int id;
   final String name;
-  final int price;
+  final double price;
   final int stock;
 
   Product({
